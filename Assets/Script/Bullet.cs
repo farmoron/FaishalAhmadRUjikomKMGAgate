@@ -5,9 +5,6 @@ public class Bullet : MonoBehaviour
 {
     public float Kecepatan = 5.0f;
     public float WaktuPeluru = 3.0f;
-    public int skorVirusKecil;
-    public int skorVirusSedang;
-    public int skorVirusBesar;
     public Karakter karakter;
     // public Score score;
 
