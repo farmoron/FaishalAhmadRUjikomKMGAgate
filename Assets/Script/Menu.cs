@@ -5,8 +5,6 @@ public class Menu : MonoBehaviour
 {
      // Fungsi untuk tombol Start
 
-    public AudioSource backsoundMusic;
-
     public void OnClickPlay()
     {
         SceneManager.LoadScene("Gameplay");
@@ -32,6 +30,5 @@ public class Menu : MonoBehaviour
     public void ExitToMenu()
     {
         SceneManager.LoadScene("MainMenu");
-    }   
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    }
 }
