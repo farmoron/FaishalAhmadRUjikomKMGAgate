@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class Karakter : MonoBehaviour
 {
@@ -9,11 +10,12 @@ public class Karakter : MonoBehaviour
     public GameObject BulletCircle;
     public Transform ShotNavigation;
     private float Timer = 0f;
-    private int TotalShot, Score;
+    public int TotalShot, Score;
     public int MaximumShot = 1;
     public float Health = 10;
     public AudioSource AudioShot, AudioEnemyTouchBase;
     public Image HealthImage;
+    public TMP_Text ScoreText;
     void Start()
     {
         Score = 0;
@@ -69,10 +71,11 @@ public class Karakter : MonoBehaviour
         }
         
     }
-    public void AddScore()
-    {
-        Score = Score + 10;
-    }
+    public void AddScore(int score)
+    {   
+        Score = Score + score;
+        ScoreText.text = "Score : " + Score.ToString();
+    }
     void TembakPeluru()
     {
         Instantiate(BulletCircle, ShotNavigation.position, ShotNavigation.rotation);

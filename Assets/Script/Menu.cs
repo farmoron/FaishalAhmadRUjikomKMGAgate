@@ -3,8 +3,13 @@ using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
-     // Fungsi untuk tombol Start
+    // Fungsi untuk tombol Start
 
+    public AudioSource BGM;
+    public void Start()
+    {
+        BGM.Play();
+    }
     public void OnClickPlay()
     {
         SceneManager.LoadScene("Gameplay");

@@ -1,5 +1,4 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Monster : MonoBehaviour
@@ -29,7 +28,7 @@ public class Monster : MonoBehaviour
     }
     void SpawnEnemy()
     {
-        float randomX = Random.Range(0.5f, -0.5f);
+        float randomX = Random.Range(-7f, 7f);
         Vector3 spawnPos = new Vector3(randomX, 5f, 0);
 
         int pilih = Random.Range(0, 5);
@@ -39,20 +38,12 @@ public class Monster : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D col)
     {
-        // ❌ Tidak hancur bila menyentuh pemain
-        if (col.collider.CompareTag("Bullet"))
-        {
-            col.gameObject.GetComponent<Karakter>().AddScore();
-        }
-
-        // ❌ Tidak hancur bila menyentuh objek lain selain lantai
         if (col.collider.CompareTag("Base"))
         {
             col.gameObject.GetComponent<Karakter>().MinusHealth();
             Destroy(gameObject);
         }
 
-        // ✅ HANCUR hanya ketika menyentuh lantai
                 Destroy(gameObject);
 
     }
@@ -60,7 +51,7 @@ public class Monster : MonoBehaviour
     {
         while(IsSpawning)
         {
-            yield return new WaitForSeconds (2);
+            yield return new WaitForSeconds (Random.Range(1, 5));
             SpawnEnemy();
         }
         
