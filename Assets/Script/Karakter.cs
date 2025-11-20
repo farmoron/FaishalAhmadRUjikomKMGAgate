@@ -23,6 +23,10 @@ public class Karakter : MonoBehaviour
         //     Debug.Log("lompat");
         //     jump();
         // }
+        Vector3 worldMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        worldMousePosition.z = 0;
+        Vector3 direction = worldMousePosition - transform.position;
+        transform.rotation = Quaternion.Euler(0f, 0f, 90f);
         Timer += Time.deltaTime;
         if (Timer >= 1f)
         {
