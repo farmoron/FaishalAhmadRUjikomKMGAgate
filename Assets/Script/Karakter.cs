@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Karakter : MonoBehaviour
 {
@@ -7,22 +9,19 @@ public class Karakter : MonoBehaviour
     public GameObject BulletCircle;
     public Transform ShotNavigation;
     private float Timer = 0f;
-    private int TotalShot;
+    private int TotalShot, Score;
     public int MaximumShot = 1;
-    public AudioSource AudioShot;
+    public float Health = 10;
+    public AudioSource AudioShot, AudioEnemyTouchBase;
+    public Image HealthImage;
     void Start()
     {
-        
+        Score = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        // if (Input.GetMouseButtonDown(0))
-        // {
-        //     Debug.Log("lompat");
-        //     jump();
-        // }
         Vector3 worldMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         worldMousePosition.z = 0;
         Vector3 direction = worldMousePosition - transform.position;
@@ -54,6 +53,25 @@ public class Karakter : MonoBehaviour
         mousePosition.x = Mathf.Clamp(mousePosition.x, minimum.x, maximum.x);
         mousePosition.y = Mathf.Clamp(mousePosition.y, minimum.y, maximum.y);
         transform.position = mousePosition;
+    }
+    public void MinusHealth()
+    {
+        if (Health > 1)
+        {
+            AudioEnemyTouchBase.Play();
+            Health = Health -1;
+        HealthImage.fillAmount = Health/10;
+        } else
+        {
+            PlayerPrefs.SetInt("Score", Score);
+            PlayerPrefs.Save();
+            SceneManager.LoadScene("GameOver");
+        }
+        
+    }
+    public void AddScore()
+    {
+        Score = Score + 10;
     }
     void TembakPeluru()
     {
